@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.2.0/css/all.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <i class="fas fa-user-secret"></i>
+    <i class="fas fa-users"></i>
+
+    <div id="box" class="aa">盒子</div>
+    <div>11111</div>
+    <div>2222</div>
+    <span class="aa">spanspan</span>
+    <em id="box2">emememe</em>
+    <a href="#">打开百度</a>
+
+    <ul>
+      <li>
+        111
+        <ol>
+          <li>111</li>
+          <li>222</li>
+        </ol>
+      </li>
+      <li>
+        222
+        <ol>
+          <li>111</li>
+          <li>222</li>
+        </ol>
+      </li>
+      <li>
+        333
+        <ol>
+          <li>111</li>
+          <li>222</li>
+        </ol>
+      </li>
+    </ul>
+  </body>
+  <!-- <script src="./node_modules/jquery/dist/jquery.js"></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <script>
+    console.log($); // 函数
+
+    $("#box").css("background-color", "red");
+    $(".aa").css("color", "blue");
+    $("div").css("font-size", "30px");
+
+    $("#box2").css({
+      backgroundColor: "orange",
+      border: "2px solid  black",
+      color: "red",
+    });
+
+    $("i,span,a,#box").css({
+      fontSize: "30px",
+    });
+
+    // $("div.aa").html("哈哈哈哈");
+    $("div.aa").html("<strong>加粗加粗</strong>"); // 设置div里面的内容
+
+    console.log($("div.aa").html()); //读取 div里面内容
+
+    console.log($("#box2").css("backgroundColor"));
+
+    $("ul>li").css("font-size", 20);
+    $("ul li").css("font-size", 20);
+  </script>
+</html>

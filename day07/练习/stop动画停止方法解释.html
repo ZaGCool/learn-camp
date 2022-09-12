@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>单击开始动画</button>
+    <button>单击停止动画</button>
+    <div id="box1"></div>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <script>
+    // stop() jquery的动画停止方法
+    // stop() 第一参数：是否清除动画队列 true/false  第二参数 是否跳转到最终动画
+    $("button")
+      .eq(0)
+      .click(function () {
+        // 时间版动画 多值同时缓冲运动
+        // 速度版动画
+        $("#box1").animate({ width: 400 }, 2000).animate({ height: 300 }, 2000);
+      });
+
+    $("button")
+      .eq(1)
+      .click(function () {
+        // $("#box1").stop(false, false); // false 不清除动画队列 后续动画还会执行,false 不跳转到最终效果
+        // $("#box1").stop(true, false); // true 清除动画队列 后续动画不会执行,false 不跳转到最终效果
+        // $("#box1").stop(false, true); // false 不清除动画队列 后续动画会执行,true 跳转到当前动画的最终效果
+        $("#box1").stop(true, true); // true 清除动画队列 后续动画不会执行,true 跳转到当前动画的最终效果
+      });
+  </script>
+</html>

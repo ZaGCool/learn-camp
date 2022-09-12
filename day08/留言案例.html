@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box {
+        margin: 50px;
+      }
+      #oUl {
+        width: 300px;
+        height: 260px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <ul id="oUl">
+        <!-- <li>今天天气不错哦！<a href="javascript:;">删除</a></li>
+            <li>最近疫情比较严重，大家注意安全！<a href="javascript:;">删除</a></li> -->
+      </ul>
+      <span>
+        <!-- select标签  下面的option选择了哪一个  那么select标签它身上value就是那一个option的value-->
+        <select id="oSel">
+          <option>张三</option>
+          <option>小美</option>
+          <option>李四</option>
+          <option>小花</option>
+        </select> </span
+      ><input type="text" /> <button>点击发送留言</button>
+    </div>
+  </body>
+  <script src="./node_modules/jquery/dist/jquery.js"></script>
+  <script>
+    /* 
+     分析： 1 点击发送留言  把文本框中内容 放到ul中 
+     代码编写：1 先获取元素 2 操作 找事件   
+     js语言 事件驱动型语言 
+
+     js:  innerHTML 
+     jq: html()
+    */
+    function fn() {
+      //   $("input").val("我是中国人");
+      //   console.log($("input").val()); // value input元素 的值 都是通过value来获取的  读取也可以设置
+
+      // trim() 字符串的一个方法 去掉前后空格 方法
+
+      if (
+        $("input")
+          .val()
+          .replace(/^\s+|\s+$/g, "") == ""
+      ) {
+        // 弹出框
+        alert("抱歉，请您输入留言内容！");
+      } else {
+        var oLi = $("<li>");
+        oLi.html(
+          "<strong>" +
+            $("#oSel").val() +
+            "</strong>" +
+            ":" +
+            $("input").val() +
+            '<a href="javascript:;">删除</a>'
+        );
+
+        //   $("#oUl").append(oLi);
+        oLi.appendTo($("#oUl"));
+
+        // 清除input框的内容
+        $("input").val("");
+        // 文本框焦点获取
+        $("input").focus();
+
+        //   $("#oUl").html(
+        //     "<li>" + $("input").val() + '<a href="javascript:;">删除</a></li>'
+        //   );
+        // jquery 是由js来封装的 采用 addEventListener绑定事件绑定
+        oLi.find("a").click(function () {
+          console.log($(this));
+          $(this).parent().remove();
+          // console.log($("#oUl li a"));
+        });
+      }
+    }
+
+    $("button").click(fn);
+
+    // 键盘事件 按下键盘并弹起 就会触发keyup事件
+    $("input").keyup(function (e) {
+      // console.log(e.keyCode); // 按下键盘的编码 通过编码来判断
+      if (e.keyCode == 13) {
+        fn();
+      }
+    });
+
+    // 获取所有的a标签
+    // jquery 容错性比较好
+    // console.log($("#oUl li a"));
+  </script>
+</html>

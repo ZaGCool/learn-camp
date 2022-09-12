@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      .box {
+        width: 322px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      #box {
+        width: 0;
+        opacity: 0;
+      }
+
+      #bottomPart {
+        height: 0;
+      }
+
+      span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+      }
+    </style>
+
+    <script></script>
+  </head>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script>
+    // 入口函数
+    $(function () {
+      $("#box").animate(
+        {
+          width: 322,
+          opacity: 1,
+        },
+        1500,
+        "linear",
+        function () {
+          console.log("哈哈哈运动完了");
+          $("#bottomPart").animate({ height: 101 }, 1000, "linear");
+        }
+      );
+      // 点击关闭span  让盒子先向下（底部盒子高度变成0 整个盒子width：0 透明度同时变化1--0）
+      $("#closeButton").click(function () {
+        // 动画执行完毕之后 在回调函数中 执行下一个动画
+        // $("#bottomPart").animate({ height: 0 }, 800, "linear", function () {
+        //   $("#box").animate({ width: 0, opacity: 0 }, 1000, "linear");
+        // });
+        // jquery 方法接着方法调用 链式操作
+        $("#bottomPart")
+          .animate({ height: 0 }, 800, "linear")
+          .parent()
+          .delay(1000)
+          .animate({ width: 0, opacity: 0 }, 1000, "linear");
+      });
+    });
+  </script>
+  <body>
+    <div class="box" id="box">
+      <span id="closeButton"></span>
+      <div class="hd" id="headPart">
+        <img src="images/t.jpg" alt="" />
+      </div>
+      <div class="bd" id="bottomPart">
+        <img src="images/b.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+</html>

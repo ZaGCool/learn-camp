@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        overflow: hidden;
+        position: absolute;
+        left: 200px;
+        top: 200px;
+      }
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin: 30px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1">
+      <div id="box2"></div>
+    </div>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <script>
+    // mouseover鼠标移上事件    mouseout 事件移出事件
+    // mouseenter mouseleave 1 穿过子元素 不会认为离开了父元素  2 不会产生事件冒泡
+
+    $("#box1").mouseenter(function () {
+      console.log("哈哈哈鼠标移到box1身上了");
+    });
+    $("#box1").mouseleave(function () {
+      console.log("哈哈哈鼠标移出box1");
+    });
+
+    $("#box2").mouseenter(function () {
+      console.log("哈哈哈鼠标移到box2身上了");
+    });
+    $("#box2").mouseleave(function () {
+      console.log("哈哈哈鼠标移出box2");
+    });
+
+    // mouseover  mouseout  1 从父元素身上穿过子元素 会被认为离开了父元素 到了子元素身上 2 产生事件冒泡
+
+    // 哈哈哈鼠标移到box1身上了;
+
+    // 哈哈哈鼠标移出box1; 离开绿色盒子 移到红色身上
+    // 哈哈哈鼠标移到box2身上了;
+    // 哈哈哈鼠标移到box1身上了; 事件冒泡 事件传递
+
+    // 哈哈哈鼠标移出box2;
+    // 哈哈哈鼠标移出box1;事件传递 事件冒泡
+    // 哈哈哈鼠标移到box1身上了;
+
+    // 哈哈哈鼠标移出box1;
+  </script>
+</html>

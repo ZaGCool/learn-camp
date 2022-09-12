@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 300px;
+        height: 250px;
+        border: 1px solid black;
+        margin: 100px auto;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <p>keyCode为:<span></span></p>
+    </div>
+  </body>
+  <script src="./jquery.js"></script>
+  <script>
+    $(document).keyup(function (e) {
+      $("span").html(e.keyCode);
+      // red: r 82   blue:b  66 green: g 71  pink: p 80
+      //   if (e.keyCode == 82) {
+      //     $("#box").css("backgroundColor", "red");
+      //   } else if (e.keyCode == 66) {
+      //     $("#box").css("backgroundColor", "blue");
+      //   } else if (e.keyCode == 71) {
+      //     $("#box").css("backgroundColor", "green");
+      //   } else if (e.keyCode == 80) {
+      //     $("#box").css("backgroundColor", "pink");
+      //   } else {
+      //     $("#box").css("backgroundColor", "");
+      //   }
+
+      switch (e.keyCode) {
+        case 82:
+          $("#box").css("backgroundColor", "red");
+          break;
+        case 66:
+          $("#box").css("backgroundColor", "blue");
+          break;
+        case 71:
+          $("#box").css("backgroundColor", "green");
+          break;
+        case 80:
+          $("#box").css("backgroundColor", "pink");
+          break;
+        default:
+          $("#box").css("backgroundColor", "");
+          break;
+      }
+    });
+  </script>
+</html>

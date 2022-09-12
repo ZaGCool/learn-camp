@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #box {
+        width: 400px;
+        height: 225px;
+        margin: 100px auto 0;
+        border: 2px solid black;
+        position: relative;
+        overflow: hidden;
+      }
+      #box a {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      ol.nav {
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        transform: translateX(-50%);
+        list-style: none;
+      }
+      ol li {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        float: left;
+        border: 1px solid white;
+        margin-right: 10px;
+      }
+      ol li.active {
+        background-color: #fff;
+      }
+      #box span {
+        position: absolute;
+        top: 100px;
+        width: 50px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 18px;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+      }
+      #box span:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+        color: white;
+      }
+      span.left {
+        left: 0;
+      }
+      span.right {
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <a href="javascript;;"><img src="./img/1.jpg" alt="" /></a
+      ><a href="javascript;;"><img src="./img/2.jpg" alt="" /></a
+      ><a href="javascript;;"><img src="./img/3.jpg" alt="" /></a
+      ><a href="javascript;;"><img src="./img/4.jpg" alt="" /></a>
+      <ol class="nav">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+      <span class="left">&lt;</span>
+      <span class="right">&gt;</span>
+    </div>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <script>
+    // 设置一个变量 计数器
+    var n = 0;
+    // 初始化 上来就立马显示第一张
+    $("#box>a").eq(n).show().siblings("a").hide();
+    // 1 开启定时器 让里面图片 隔一段时间 淡入淡出进行切换
+    function fn1() {
+      n++;
+      if (n > $("#box a").length - 1) {
+        n = 0;
+      }
+      core();
+    }
+
+    function core() {
+      $("#box>a").eq(n).stop().fadeIn().siblings("a").stop().fadeOut(); // 动画方法 执行时间 400ms
+      $("ol.nav li").eq(n).addClass("active").siblings().removeClass("active");
+    }
+    var timer = setInterval(fn1, 2000);
+
+    // 前一张
+    $(".left").click(function () {
+      n--;
+      if (n < 0) {
+        n = $("#box a").length - 1;
+      }
+      core();
+    });
+    // 下一张
+    $(".right").click(fn1);
+
+    // 鼠标 移入到box里面 立马让定时器停止
+    $("#box").mouseenter(function () {
+      clearInterval(timer);
+    });
+
+    // 鼠标离开box盒子 让定时器再走起来
+    $("#box").mouseleave(function () {
+      timer = setInterval(fn1, 2000);
+    });
+  </script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      body {
+        background: #000;
+      }
+
+      .wrap {
+        margin: 100px auto 0;
+        width: 630px;
+        height: 394px;
+        padding: 10px 0 0 10px;
+        background: #000;
+        overflow: hidden;
+        border: 1px solid #fff;
+      }
+
+      .wrap li {
+        float: left;
+        margin: 0 10px 10px 0;
+      }
+
+      .wrap img {
+        display: block;
+        border: 0;
+      }
+    </style>
+  </head>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <script>
+    // 给所有的li 添加鼠标移上事件  移动哪个li身上 就让当前的li的其他兄弟们 透明度变1  0.5
+
+    // fadeIn fadeOut 淡入淡出轮播图
+    // fadeTo()变换到指定透明度  参数1: 动画执行时间 参数2 透明度0～1  参数3 动画速度运动形式(swing linear) 参数4 回调函数
+    // slideDown() slideUp()
+    // animate()
+
+    $(function () {
+      // console.log("哈哈哈当前dom结构加载完毕了");
+      $(".wrap>ul>li").mouseenter(function () {
+        // $(this).css("opacity", 1).siblings().css("opacity", 0.5);
+        $(this).stop().fadeTo(800, 1).siblings().stop().fadeTo(800, 0.5);
+
+        //js  3~5 行
+      });
+
+      $(".wrap").mouseleave(function () {
+        // mouseout mouseover 都会触发 事件冒泡
+        $(".wrap>ul>li").stop().fadeTo(800, 1);
+      });
+    });
+  </script>
+  <body>
+    <div class="wrap">
+      <ul>
+        <li>
+          <a href="#"><img src="images/01.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/02.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/03.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/04.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/05.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/06.jpg" alt="" /></a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

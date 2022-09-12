@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        list-style: none;
+        width: 500%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      ul li {
+        float: left;
+        position: relative;
+      }
+      ul li a {
+        display: block;
+      }
+      ul li img {
+        width: 329px;
+        height: 220px;
+        display: block;
+      }
+      #box {
+        width: 329px;
+        height: 220px;
+        margin: 50px auto;
+        border: 2px solid black;
+        position: relative;
+        overflow: hidden;
+      }
+      #box p {
+        position: absolute;
+        left: 0;
+        bottom: 0px;
+        width: 100%;
+        height: 0px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        text-decoration: none;
+        line-height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- jquery  js   先 布局掌握 靠谱 -->
+    <div id="box">
+      <ul>
+        <li>
+          <a href="javascript:;">
+            <img src="./img/1.jpg" alt="" />
+            <p class="desc">新闻内容1111</p>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;"
+            ><img src="./img/2.jpg" alt="" />
+            <p class="desc">新闻内容2222</p></a
+          >
+        </li>
+        <li>
+          <a href="javascript:;"
+            ><img src="./img/3.jpg" alt="" />
+            <p class="desc">新闻内容3333</p></a
+          >
+        </li>
+        <li>
+          <a href="javascript:;"
+            ><img src="./img/4.jpg" alt="" />
+            <p class="desc">新闻内容4444</p></a
+          >
+        </li>
+        <li>
+          <a href="javascript:;"
+            ><img src="./img/1.jpg" alt="" />
+            <p class="desc">新闻内容5555</p></a
+          >
+        </li>
+      </ul>
+    </div>
+    <script src="../jquery.js"></script>
+    <script>
+      // 开启定时器  隔一段时间 滑过去一张图
+      var timer = null;
+      var n = 0;
+
+      var w = $("ul li").width(); //329
+      //   console.log($("ul li").width());
+      $("p").eq(n).css({ height: 50 }).delay(1900).animate({ height: 0 }, 600);
+      // 开启定时器
+      timer = setInterval(function () {
+        n++;
+        if (n == 4) {
+          setTimeout(function () {
+            n = 0;
+            $("#box>ul").css("left", -w * n);
+          }, 700);
+        }
+        // css3 位移  transform:tranlateX()
+        $("#box>ul")
+          .stop(false, false)
+          .animate(
+            {
+              left: -w * n,
+            },
+            600,
+            "linear",
+            function () {
+              // console.log("哈哈哈滑动完了", n);
+              if (n == 4) {
+                n = 0;
+                $("#box>ul").css("left", -w * n);
+              }
+              $("p")
+                .eq(n)
+                .animate({ height: 50 }, 600)
+                .delay(1200)
+                .animate({ height: 0 }, 600);
+            }
+          );
+
+        // left 位移
+      }, 3000);
+    </script>
+  </body>
+</html>

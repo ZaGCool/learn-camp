@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        margin: 100px auto;
+        width: 350px;
+      }
+      .container > * {
+        float: left;
+      }
+      #box {
+        width: 200px;
+        border: 1px solid black;
+        height: 40px;
+      }
+      #box section {
+        width: 0;
+        height: 100%;
+        background-color: red;
+      }
+      span {
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+  <script src="./jquery.js"></script>
+  <script>
+    $(function () {
+      var timer = null; // 空值
+
+      $("button").click(function () {
+        if (timer) {
+          return;
+        }
+        var n = 0;
+
+        timer = setInterval(function () {
+          // 定时器的编号 1  2  3  4  5   true  false
+          n++;
+          if (n >= 200) {
+            n = 200;
+            // 停止定时器
+            clearInterval(timer);
+            timer = null;
+          }
+          if (n < 70) {
+            $("#box section").css("backgroundColor", "red");
+          } else if (n < 140) {
+            $("#box section").css("backgroundColor", "orange");
+          } else {
+            $("#box section").css("backgroundColor", "green");
+          }
+          $("#box section").css("width", n);
+          $("span").html(parseInt((n / 200) * 100) + "%");
+          // 0/200  0%  50/200  25%  100/200 50%
+        }, 10);
+        // $("section").animate(
+        //   {
+        //     width: 200,
+        //   },
+        //   3000,
+        //   "linear"
+        // );
+      });
+    });
+  </script>
+  <body>
+    <div class="container">
+      <div id="box">
+        <!-- h5新增的结构化标签 -->
+        <section></section>
+      </div>
+      <span>0%</span>
+      <button>开始充电</button>
+    </div>
+  </body>
+</html>

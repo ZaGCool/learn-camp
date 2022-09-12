@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .wrap {
+        width: 330px;
+        height: 30px;
+        margin: 100px auto 0;
+        padding-left: 10px;
+        background-image: url(imgs/bg.jpg);
+      }
+
+      .wrap li {
+        background-image: url(imgs/libg.jpg);
+      }
+
+      .wrap > ul > li {
+        float: left;
+        margin-right: 10px;
+        position: relative;
+      }
+
+      .wrap a {
+        display: block;
+        height: 30px;
+        width: 100px;
+        text-decoration: none;
+        color: #000;
+        line-height: 30px;
+        text-align: center;
+      }
+
+      .wrap li ul {
+        position: absolute;
+        top: 30px;
+        display: none;
+      }
+    </style>
+  </head>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <script>
+    $(function () {
+      // $('.wrap>ul>li')
+      // slideDown() 滑入
+      // slideUp() 滑出
+      $(".wrap>ul")
+        .children("li")
+        .mouseover(function () {
+          // 参数1: 动画执行时间  参数2 添加回调函数
+          // stop() 停止动画  1 是否清除动画队列 false   2 是否跳转到最终效果 false
+          $(this).find("ul").stop().slideDown(); // 400ms normal
+        });
+      $(".wrap>ul")
+        .children("li")
+        .mouseout(function () {
+          $(this).find("ul").stop().slideUp();
+        });
+    });
+
+    // mouseenter mouseleave
+    // mouseover mouseout
+
+    // stop() 详细解释一下
+  </script>
+  <body>
+    <div class="wrap">
+      <ul>
+        <li>
+          <a href="javascript:void(0);">一级菜单1</a>
+          <ul>
+            <li><a href="javascript:void(0);">二级菜单11</a></li>
+            <li><a href="javascript:void(0);">二级菜单12</a></li>
+            <li><a href="javascript:void(0);">二级菜单13</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);">一级菜单2</a>
+          <ul>
+            <li><a href="javascript:void(0);">二级菜单21</a></li>
+            <li><a href="javascript:void(0);">二级菜单22</a></li>
+            <li><a href="javascript:void(0);">二级菜单23</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);">一级菜单3</a>
+          <ul>
+            <li><a href="javascript:void(0);">二级菜单31</a></li>
+            <li><a href="javascript:void(0);">二级菜单32</a></li>
+            <li><a href="javascript:void(0);">二级菜单33</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
